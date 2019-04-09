@@ -96,7 +96,7 @@
 
 						<div class="form-group">
 							<label for="outputText" class="control-label">Traduccion:</label>
-							<textarea class="form-control" rows="10" id="outText"
+							<textarea class="form-control" rows="10" id="outputText"
 								name="outputText" type="text" placeholder="texto" >${outputText}</textarea>
 						</div>
 						
