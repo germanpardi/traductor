@@ -89,7 +89,8 @@
 								id="traduccionesfrecuentes" style="visibility:hidden">
 								
 							</select> <br>
-						
+						<div>
+						</div>
 						</div>
 						
 
