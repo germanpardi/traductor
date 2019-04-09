@@ -15,5 +15,8 @@ public interface IDiccionarioSERVICE {
 	public void borrarDiccionario(int id);
 	public DiccionarioDTO buscarDiccionario(int id);
 	public List<DiccionarioDTO> buscarTexto(String textobuscar);
-
+	public List<DiccionarioDTO> listarAportes(String categoria);
+	String encontarparejaespanolingles(String espanol, String ingles);
+	void altaDiccionario(List<Diccionario> listadiccionario);
+	int maximoid();
 }

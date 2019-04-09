@@ -76,6 +76,7 @@
 				<ul class="nav">
 						<li class="active"> <a href="buscarpalabras"><h4> Palabras</h4></a></li>
 						<li class="active"> <a href="buscarfrases"><h4> Frases</h4></a></li>
+						<li class="active"> <a href="buscaraportes"><h4> Aportes</h4></a></li>
 						<li class="active">
 						<form class="form-inline active-cyan-3 active-cyan-4">
   							<i class="fas fa-search" aria-hidden="true"></i>

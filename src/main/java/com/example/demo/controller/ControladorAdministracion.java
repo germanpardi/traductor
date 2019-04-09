@@ -26,11 +26,7 @@ public class ControladorAdministracion {
 	@Autowired
 	IUsuarioSERVICE uservice;
 	
-	@RequestMapping("/index")
-	public String index(HttpServletRequest request) {
-		
-		return "index";
-	}
+	
 	@RequestMapping("/administrar")
 	public String administrar(HttpServletRequest request) {
 		
@@ -91,6 +87,17 @@ public class ControladorAdministracion {
 		request.setAttribute("diccionarioDTO", diccionarioDTO);
 	
 		return "administrar";
+	}
+	
+	@RequestMapping("/buscaraportes")
+	public String buscaraportes(HttpServletRequest request) {
+		
+		String categoria= "apo";
+		List<DiccionarioDTO> diccionarioDTO = dservice.listarAportes(categoria);
+		request.setAttribute("diccionarioDTO", diccionarioDTO);
+	
+		return "administrar";
+		
 	}
 	
 	@RequestMapping("/editar")

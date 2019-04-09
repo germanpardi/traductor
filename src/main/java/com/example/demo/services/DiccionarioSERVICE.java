@@ -17,9 +17,9 @@ public class DiccionarioSERVICE implements IDiccionarioSERVICE {
 	DiccionarioRepository diccionarioRepository;
 
 	@Override
-	public List<String> listarEspanol(String espanol) {
+	public List<String> listarEspanol(String ingles) {
 		List<String> listaEspanol = new ArrayList<String>();
-		Iterable<Diccionario> diccionarios = diccionarioRepository.findByEspanol(espanol);
+		Iterable<Diccionario> diccionarios = diccionarioRepository.findByIngles(ingles);
 		for (Diccionario daux : diccionarios) {
 			//DiccionarioDTO ddto = new DiccionarioDTO(daux.getId(),daux.getEspanol(), daux.getIngles(),daux.getTipo(), daux.getCategoria(),daux.getNumUso());
 			listaEspanol.add(daux.getEspanol());
@@ -30,7 +30,7 @@ public class DiccionarioSERVICE implements IDiccionarioSERVICE {
 	@Override
 	public List<String> listarIngles(String espanol) {
 		List<String> listaIngles = new ArrayList<String>();
-		Iterable<Diccionario> diccionarios = diccionarioRepository.findByIngles(espanol);
+		Iterable<Diccionario> diccionarios = diccionarioRepository.findByEspanol(espanol);
 		for (Diccionario daux : diccionarios) {
 			//DiccionarioDTO ddto = new DiccionarioDTO(daux.getId(),daux.getEspanol(), daux.getIngles(),daux.getTipo(), daux.getCategoria(),daux.getNumUso());
 			listaIngles.add(daux.getIngles());
@@ -61,11 +61,7 @@ public class DiccionarioSERVICE implements IDiccionarioSERVICE {
 		return listaDiccionarios;
 	}
 
-	@Override
-	public void altaDiccionario(Diccionario dic) {
-		diccionarioRepository.save(dic);
-
-	}
+	
 
 	@Override
 	public void borrarDiccionario(int id) {
@@ -84,6 +80,40 @@ public class DiccionarioSERVICE implements IDiccionarioSERVICE {
 	}
 
 	@Override
+	public String encontarparejaespanolingles(String espanol, String ingles) {
+		// TODO Auto-generated method stub
+		String valorid=diccionarioRepository.findByEspanolIngles(espanol, ingles);
+		System.out.println(" acceso OPTION devuelve: " + valorid);
+		if (valorid==null) {
+			valorid="-1"; 
+		} 
+		
+		return valorid;
+	}
+
+	@Override
+	public void altaDiccionario(List<Diccionario> listadiccionario) {
+		int cont=maximoid()+1;
+		for (Diccionario dic : listadiccionario) {
+			dic.setId(cont++);
+			System.out.println("SERVICIO ALTA DICCIONARIO: " + dic);
+			diccionarioRepository.save(dic);
+		}
+	}
+
+	@Override
+	public int maximoid() {
+		// TODO Auto-generated method stub
+		return diccionarioRepository.findMAXId();
+	}
+
+	@Override
+	public void altaDiccionario(Diccionario diccionario) {
+		diccionarioRepository.save(diccionario);
+		
+	}
+	
+	@Override
 	public List<DiccionarioDTO> buscarTexto(String textobuscar) {
 		List<Diccionario> dics = diccionarioRepository.findtextobucado(textobuscar);
 		List<DiccionarioDTO> diccionarioDTO = new ArrayList<DiccionarioDTO>();
@@ -93,5 +123,18 @@ public class DiccionarioSERVICE implements IDiccionarioSERVICE {
 		}
 		return diccionarioDTO;
 	}
+    @Override
+	public List<DiccionarioDTO> listarAportes(String categoria) {
+		categoria = "apo";
+		List<Diccionario> apaux = diccionarioRepository.findByCategoria(categoria);
+		List<DiccionarioDTO> aportes = new ArrayList<DiccionarioDTO>();
+		for (Diccionario daux : apaux) {
+			DiccionarioDTO ddto = new DiccionarioDTO(daux.getId(),daux.getEspanol(), daux.getIngles(),daux.getTipo(), daux.getCategoria(),daux.getNum_uso());
+			aportes.add(ddto);	
+		}
+		return aportes;
+		
+	}
+
 
 }

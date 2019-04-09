@@ -97,7 +97,7 @@
 						<div class="form-group">
 							<label for="outputText" class="control-label">Traduccion:</label>
 							<textarea class="form-control" rows="10" id="outputText"
-								name="outputText" type="text" placeholder="texto" >${outputText}</textarea>
+								name="outputText" type="text" placeholder="texto" readonly >${outputText}</textarea>
 						</div>
 						
 						<div class="form-group">
@@ -176,6 +176,7 @@
 	<!-- /.container -->
 
 			<a href="/administrar" class="btn btn-info" role="button">ADMINISTRAR</a>
-
+			<script src="js/ajaxTraducir.js"></script>
+			<script src="js/ajaxFrecuentes.js"></script>
 </body> <!-- azul -->
 </html>
